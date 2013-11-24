@@ -8,7 +8,8 @@ private:
 	int officerBadgeNumber;
 	int clockInTime;
 public:
-
+	PoliceOfficer();
+	~PoliceOfficer();
 };
 
 #endif

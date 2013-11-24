@@ -5,7 +5,8 @@ class ParkingMeter
 private:
 
 public:
-	
+	ParkingMeter();
+	~ParkingMeter();
 };
 
 #endif	

@@ -13,7 +13,8 @@ class ParkingTicket
 		int officerBadgeNumber;
 
 public:
-	
+	ParkingTicket();
+	~ParkingTicket();
 };
 
 #endif	

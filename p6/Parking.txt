@@ -1,0 +1,4 @@
+enter 3 14:15 Mini Cooper DFW123 20 
+exit 3 14:30 
+in Bob 1234 8:00 
+out Bob 12:00 

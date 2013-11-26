@@ -14,38 +14,44 @@ using namespace std;
 
 PoliceOfficer officerOnDuty;
 ParkingMeter Meters[10];
+char operation[6];
+int spotTemp;
+
+void enterCar();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 
 	ifstream inputFile("Parking.txt");
 	
-
-	/*if(operation[0]=='e' && operation[1]=='n'){
-	ParkedCar carObject = enterCar();
-	cout<<"SPOT NUMBER: "<<carObject.spotNumber<<endl<<"HOURS: "<<carObject.hours<<endl;
-	cout<<"MINUTES: "<<carObject.minutes<<endl<<"MAKE: "<<carObject.make<<endl<<"MODEL: "<<carObject.model<<endl;
-	cout<<"LICENSE NUMBER: "<<carObject.licenseNumber<<endl<<"PAID TIME: "<<carObject.paidTime<<endl;
-	}*/
-	/*ParkedCar carObject;
+	for(int i=0;i<2;i++){
 	inputFile>>operation;
-	inputFile>>carObject.spotNumber;
-	inputFile>>carObject.hours;
-	inputFile.ignore(1,':');
-	inputFile>>carObject.minutes;
-	inputFile>>carObject.make;
-	inputFile>>carObject.model;
-	inputFile>>carObject.licenseNumber;
-	inputFile>>carObject.paidTime;*/
-
-	//carObject.metricTime = (carObject.hours * 60) + carObject.minutes;
+	if(operation[0]=='e' && operation[1]=='n'){
+		//enterCar();
+		inputFile>>spotTemp;
+		cout<<"A car enters spot #"<<spotTemp<<"."<<endl;
+		Meters[spotTemp].spotNumber = spotTemp;
+		inputFile>>Meters[spotTemp].car.hours;
+		inputFile.ignore(1,':');
+		inputFile>>Meters[spotTemp].car.minutes;
+		Meters[spotTemp].car.metricTime = (Meters[spotTemp].car.hours * 60) + Meters[spotTemp].car.minutes;
+		inputFile>>Meters[spotTemp].car.make;
+		inputFile>>Meters[spotTemp].car.model;
+		inputFile>>Meters[spotTemp].car.licenseNumber;
+		inputFile>>Meters[spotTemp].paidTime;
+	}
+	else if(operation[0]=='e' && operation[1]=='x'){
+		inputFile>>spotTemp;
+		cout<<"The car in spot #"<<spotTemp<<" exits."<<endl;
+	}
+	}
 
 	/*cout<<"SPOT NUMBER: "<<carObject.spotNumber<<endl<<"TIME: "<<carObject.hours<<":"<<carObject.minutes<<endl;
 	cout<<"METRIC TIME: "<<carObject.metricTime<<endl;
 	cout<<"MAKE: "<<carObject.make<<endl<<"MODEL: "<<carObject.model<<endl;
 	cout<<"LICENSE NUMBER: "<<carObject.licenseNumber<<endl<<"PAID TIME: "<<carObject.paidTime<<endl;
 	*/
-	
+
 
 
 
@@ -57,22 +63,23 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
-/*ParkedCar enterCar(){
-ParkedCar newCar;
-ifstream inputFile("Parking.txt");
-inputFile>>newCar.spotNumber;
-inputFile>>newCar.hours;
-inputFile.ignore(1,':');
-inputFile>>newCar.minutes;
-inputFile>>newCar.make;
-inputFile>>newCar.model;
-inputFile>>newCar.licenseNumber;
-inputFile>>newCar.paidTime;
-inputFile.close;
-return newCar;
+void enterCar(){
+	ifstream inputFile("Parking.txt");
+	cout<<"A car enters the parking lot."<<endl;
+	inputFile>>spotTemp;
+	Meters[spotTemp].spotNumber = spotTemp;
+	inputFile>>Meters[spotTemp].car.hours;
+	inputFile.ignore(1,':');
+	inputFile>>Meters[spotTemp].car.minutes;
+	Meters[spotTemp].car.metricTime = (Meters[spotTemp].car.hours * 60) + Meters[spotTemp].car.minutes;
+	inputFile>>Meters[spotTemp].car.make;
+	inputFile>>Meters[spotTemp].car.model;
+	inputFile>>Meters[spotTemp].car.licenseNumber;
+	inputFile>>Meters[spotTemp].paidTime;
+	inputFile.close();
 
 }
-*/
+
 
 
 /*

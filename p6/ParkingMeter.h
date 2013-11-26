@@ -1,11 +1,14 @@
 #ifndef ParkingMeter_H
 #define ParkingMeter_H
+#include "ParkedCar.h"
 class ParkingMeter
 {
-private:
+	
+public: //REVERT TO PRIVATE AFTER TESTING
+	ParkedCar car;
 	int spotNumber;
 	int paidTime;
-	//ParkedCar car;
+	
 public:
 	ParkingMeter();
 	~ParkingMeter();

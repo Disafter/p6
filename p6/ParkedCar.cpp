@@ -7,12 +7,6 @@ using namespace std;
 
 ParkedCar::ParkedCar(void)
 {
-	
-	cout<<"A car has entered the lot."<<endl;
-	
-
-	
-
 }
 
 

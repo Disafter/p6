@@ -1,4 +1,6 @@
-enter 3 23:35 Mini Cooper DFW123 20 
-exit 3 0:35 
 in Bob 1234 8:00 
+enter 3 1:00 Mini Cooper Red DFW123 5 
+exit 3 2:06 
+enter 3 0:59 Chevy Corvette Black CGF7137 36 
+exit 3 3:24  
 out Bob 12:00 

@@ -20,6 +20,7 @@ int exitHour;
 int exitMinute;
 int exitMetricTime;
 int timeUsed;
+int fine;
 
 void enterCar();
 
@@ -27,46 +28,57 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 
 	ifstream inputFile("Parking.txt");
-	
-	for(int i=0;i<2;i++){
-	inputFile>>operation;
-	if(operation[0]=='e' && operation[1]=='n'){
-		//enterCar();
-		inputFile>>spotTemp;
-		cout<<"A car enters spot #"<<spotTemp<<"."<<endl;
-		Meters[spotTemp].spotNumber = spotTemp;
-		inputFile>>Meters[spotTemp].car.hours;
-		inputFile.ignore(1,':');
-		inputFile>>Meters[spotTemp].car.minutes;
-		Meters[spotTemp].car.metricTime = (Meters[spotTemp].car.hours * 60) + Meters[spotTemp].car.minutes;
-		inputFile>>Meters[spotTemp].car.make;
-		inputFile>>Meters[spotTemp].car.model;
-		inputFile>>Meters[spotTemp].car.licenseNumber;
-		inputFile>>Meters[spotTemp].paidTime;
-	}
-	else if(operation[0]=='e' && operation[1]=='x'){
-		inputFile>>spotTemp;
-		cout<<"The car in spot #"<<spotTemp<<" exits."<<endl;
-		inputFile>>exitHour;
-		inputFile.ignore(1,':');
-		inputFile>>exitMinute;
-		exitMetricTime = (exitHour*60) + exitMinute;
-		if(exitMetricTime < Meters[spotTemp].car.metricTime){
-			exitMetricTime += (60*24);
+	ofstream outputFile("Tickets.txt");
+
+	while(!inputFile.eof()){
+		inputFile>>operation;
+		if(operation[0]=='e' && operation[1]=='n'){
+			//enterCar();
+			inputFile>>spotTemp;
+			Meters[spotTemp].spotNumber = spotTemp;
+			inputFile>>Meters[spotTemp].car.hours;
+			inputFile.ignore(1,':');
+			inputFile>>Meters[spotTemp].car.minutes;
+			Meters[spotTemp].car.metricTime = (Meters[spotTemp].car.hours * 60) + Meters[spotTemp].car.minutes;
+			inputFile>>Meters[spotTemp].car.make;
+			inputFile>>Meters[spotTemp].car.model;
+			inputFile>>Meters[spotTemp].car.color;
+			inputFile>>Meters[spotTemp].car.licenseNumber;
+			inputFile>>Meters[spotTemp].paidTime;
 		}
-		timeUsed =exitMetricTime -  Meters[spotTemp].car.metricTime;
-		if(timeUsed > Meters[spotTemp].paidTime){
-			cout<<"The car in spot #"<<spotTemp<<" incurred a fine while leaving."<<endl;
-			cout<<"It paid for "<<Meters[spotTemp].paidTime<<" minutes and stayed for "<<timeUsed<<" minutes."<<endl;
+		else if(operation[0]=='e' && operation[1]=='x'){
+			inputFile>>spotTemp;
+			inputFile>>exitHour;
+			inputFile.ignore(1,':');
+			inputFile>>exitMinute;
+			exitMetricTime = (exitHour*60) + exitMinute;
+			if(exitMetricTime < Meters[spotTemp].car.metricTime){
+				exitMetricTime += (60*24);
+			}
+			timeUsed = exitMetricTime -  Meters[spotTemp].car.metricTime;
+			if(timeUsed > Meters[spotTemp].paidTime){
+				outputFile<<"Make: "<<Meters[spotTemp].car.make<<endl;
+				outputFile<<"Model: "<<Meters[spotTemp].car.model<<endl;
+				outputFile<<"Color: "<<Meters[spotTemp].car.color<<endl;
+				outputFile<<"License Number: "<<Meters[spotTemp].car.licenseNumber<<endl;
+				outputFile<<"Fine: ";
+
+				fine = (timeUsed - Meters[spotTemp].paidTime) / 60;
+				fine = 25 + (10 * fine);
+				outputFile<<fine<<endl;
+
+				outputFile<<"Officer: "<<officerOnDuty.officerName<<endl;
+				outputFile<<"Badge Number: "<<officerOnDuty.officerBadgeNumber<<endl<<endl;
+			}
+		}
+		else if(operation[0] == 'i'){
+			inputFile>>officerOnDuty.officerName;
+			inputFile>>officerOnDuty.officerBadgeNumber;
+			inputFile>>officerOnDuty.clockInHour;
+			inputFile.ignore(1,':');
+			inputFile>>officerOnDuty.clockInMinute;
 		}
 	}
-	}
-
-	/*cout<<"SPOT NUMBER: "<<carObject.spotNumber<<endl<<"TIME: "<<carObject.hours<<":"<<carObject.minutes<<endl;
-	cout<<"METRIC TIME: "<<carObject.metricTime<<endl;
-	cout<<"MAKE: "<<carObject.make<<endl<<"MODEL: "<<carObject.model<<endl;
-	cout<<"LICENSE NUMBER: "<<carObject.licenseNumber<<endl<<"PAID TIME: "<<carObject.paidTime<<endl;
-	*/
 
 
 
@@ -75,13 +87,13 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 
-	system("pause");
+
+	//system("pause");
 	return 0;
 }
 
 void enterCar(){
 	ifstream inputFile("Parking.txt");
-	cout<<"A car enters the parking lot."<<endl;
 	inputFile>>spotTemp;
 	Meters[spotTemp].spotNumber = spotTemp;
 	inputFile>>Meters[spotTemp].car.hours;
@@ -95,20 +107,3 @@ void enterCar(){
 	inputFile.close();
 
 }
-
-
-
-/*
-Get First Word of File, compare and determine what operation needs to be performed
-If "Enter" { create a parked car object and fill it with the rest of the data from the line }
-If "Exit"{
-check to see if the car exceeded it's payed time, and if so generate a parking ticket object
-Then destroy the parked car object that exited
-}
-If "In" {
-create a police officer object and fill it with the rest of the data from the line
-}
-If "Out" {
-destroy the police officer object that clocked out
-}
-*/

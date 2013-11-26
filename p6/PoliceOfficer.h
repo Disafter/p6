@@ -3,10 +3,12 @@
 
 class PoliceOfficer
 {
-private:
+public://TESTING ONLY, REVERT TO PRIVATE
 	char officerName[11];
 	int officerBadgeNumber;
-	int clockInTime;
+	int clockInHour;
+	int clockInMinute;
+
 public:
 	PoliceOfficer();
 	~PoliceOfficer();

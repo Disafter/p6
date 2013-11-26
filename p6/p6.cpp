@@ -16,6 +16,10 @@ PoliceOfficer officerOnDuty;
 ParkingMeter Meters[10];
 char operation[6];
 int spotTemp;
+int exitHour;
+int exitMinute;
+int exitMetricTime;
+int timeUsed;
 
 void enterCar();
 
@@ -43,6 +47,18 @@ int _tmain(int argc, _TCHAR* argv[])
 	else if(operation[0]=='e' && operation[1]=='x'){
 		inputFile>>spotTemp;
 		cout<<"The car in spot #"<<spotTemp<<" exits."<<endl;
+		inputFile>>exitHour;
+		inputFile.ignore(1,':');
+		inputFile>>exitMinute;
+		exitMetricTime = (exitHour*60) + exitMinute;
+		if(exitMetricTime < Meters[spotTemp].car.metricTime){
+			exitMetricTime += (60*24);
+		}
+		timeUsed =exitMetricTime -  Meters[spotTemp].car.metricTime;
+		if(timeUsed > Meters[spotTemp].paidTime){
+			cout<<"The car in spot #"<<spotTemp<<" incurred a fine while leaving."<<endl;
+			cout<<"It paid for "<<Meters[spotTemp].paidTime<<" minutes and stayed for "<<timeUsed<<" minutes."<<endl;
+		}
 	}
 	}
 

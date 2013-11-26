@@ -3,7 +3,9 @@
 class ParkingMeter
 {
 private:
-
+	int spotNumber;
+	int paidTime;
+	//ParkedCar car;
 public:
 	ParkingMeter();
 	~ParkingMeter();

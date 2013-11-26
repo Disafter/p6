@@ -10,6 +10,7 @@ private:
 public:
 	PoliceOfficer();
 	~PoliceOfficer();
+	void CheckMeter();//not yet defined
 };
 
 #endif

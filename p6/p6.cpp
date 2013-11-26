@@ -12,14 +12,14 @@
 using std::ifstream; 
 using namespace std;
 
-ParkedCar enterCar();
-char operation[6];
+PoliceOfficer officerOnDuty;
+ParkingMeter Meters[10];
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 
 	ifstream inputFile("Parking.txt");
-
+	
 
 	/*if(operation[0]=='e' && operation[1]=='n'){
 	ParkedCar carObject = enterCar();
@@ -27,7 +27,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout<<"MINUTES: "<<carObject.minutes<<endl<<"MAKE: "<<carObject.make<<endl<<"MODEL: "<<carObject.model<<endl;
 	cout<<"LICENSE NUMBER: "<<carObject.licenseNumber<<endl<<"PAID TIME: "<<carObject.paidTime<<endl;
 	}*/
-	ParkedCar carObject;
+	/*ParkedCar carObject;
 	inputFile>>operation;
 	inputFile>>carObject.spotNumber;
 	inputFile>>carObject.hours;
@@ -36,15 +36,15 @@ int _tmain(int argc, _TCHAR* argv[])
 	inputFile>>carObject.make;
 	inputFile>>carObject.model;
 	inputFile>>carObject.licenseNumber;
-	inputFile>>carObject.paidTime;
+	inputFile>>carObject.paidTime;*/
 
-	carObject.metricTime = (carObject.hours * 60) + carObject.minutes;
+	//carObject.metricTime = (carObject.hours * 60) + carObject.minutes;
 
-	cout<<"SPOT NUMBER: "<<carObject.spotNumber<<endl<<"TIME: "<<carObject.hours<<":"<<carObject.minutes<<endl;
+	/*cout<<"SPOT NUMBER: "<<carObject.spotNumber<<endl<<"TIME: "<<carObject.hours<<":"<<carObject.minutes<<endl;
 	cout<<"METRIC TIME: "<<carObject.metricTime<<endl;
 	cout<<"MAKE: "<<carObject.make<<endl<<"MODEL: "<<carObject.model<<endl;
 	cout<<"LICENSE NUMBER: "<<carObject.licenseNumber<<endl<<"PAID TIME: "<<carObject.paidTime<<endl;
-
+	*/
 	
 
 

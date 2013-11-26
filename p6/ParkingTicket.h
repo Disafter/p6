@@ -15,6 +15,7 @@ class ParkingTicket
 public:
 	ParkingTicket();
 	~ParkingTicket();
+	void PrintTicket();//not yet defined
 };
 
 #endif	

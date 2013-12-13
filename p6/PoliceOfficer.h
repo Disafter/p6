@@ -13,6 +13,19 @@ public:
 	PoliceOfficer();
 	~PoliceOfficer();
 	void CheckMeter();//not yet defined
+
+	char* getOfficerName(){
+		return officerName;
+	}
+	int getOfficerBadgeNumber(){
+		return officerBadgeNumber;
+	}
+	int getClockInHour(){
+		return clockInHour;
+	}
+	int getClockInMinute(){
+		return clockInMinute;
+	}
 };
 
 #endif

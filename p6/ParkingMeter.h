@@ -12,6 +12,13 @@ public: //REVERT TO PRIVATE AFTER TESTING
 public:
 	ParkingMeter();
 	~ParkingMeter();
+
+	int getSpotNumber(){
+		return spotNumber;
+	}
+	int getPaidTime(){
+		return paidTime;
+	}
 };
 
 #endif	

@@ -2,7 +2,15 @@ Make: Mini
 Model: Cooper
 Color: Red
 License Number: DFW123
-Fine: 35
+Fine: 65
+Officer: Bob
+Badge Number: 1234
+
+Make: Chevy
+Model: Corvette
+Color: Black
+License Number: CGF7137
+Fine: 85
 Officer: Bob
 Badge Number: 1234
 
@@ -11,6 +19,14 @@ Model: Corvette
 Color: Black
 License Number: CGF7137
 Fine: 35
-Officer: Bob
-Badge Number: 1234
+Officer: Amber
+Badge Number: 3984
+
+Make: Chevy
+Model: Corvette
+Color: Black
+License Number: CGF7137
+Fine: 25
+Officer: Amber
+Badge Number: 3984
 

@@ -2,8 +2,7 @@
 #define ParkedCar_H
 class ParkedCar
 {
-public: //*****SHOULD BE REVERTED TO PRIVATE AFTER TESTING
-	
+private:
 	char make[16];
 	char model[21];
 	char color[11];
@@ -14,6 +13,30 @@ public: //*****SHOULD BE REVERTED TO PRIVATE AFTER TESTING
 public:
 	ParkedCar();
 	~ParkedCar();
+	
+	char* getMake(){
+		return make;
+	}
+	char* getModel(){
+		return model;
+	}
+	char* getColor(){
+		return color;
+	}
+	char* getLicenseNumber(){
+		return licenseNumber;
+	}
+	int getMinutes(){
+		return minutes;
+	}
+	int getHours(){
+		return minutes;
+	}
+	int getMetricTime(){
+		return (hours*60)+minutes;
+	}
+
+	char* setMake()
 };
 
 

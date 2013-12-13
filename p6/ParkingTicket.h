@@ -16,6 +16,28 @@ public:
 	ParkingTicket();
 	~ParkingTicket();
 	void PrintTicket();//not yet defined
+
+	char* getMake(){
+		return make;
+	}
+	char* getModel(){
+		return model;
+	}
+	char* getColor(){
+		return color;
+	}
+	char* getLicenseNumber(){
+		return licenseNumber;
+	}
+	float getFine(){
+		return fine;
+	}
+	char* getOfficerName(){
+		return officerName;
+	}
+	int getOfficerBadgeNumber(){
+		return officerBadgeNumber;
+	}
 };
 
 #endif	

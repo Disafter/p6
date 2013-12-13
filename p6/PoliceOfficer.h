@@ -26,6 +26,19 @@ public:
 	int getClockInMinute(){
 		return clockInMinute;
 	}
+
+	void setClockInHour(int ch){
+		clockInHour = ch;}
+	void setClockInMinute(int cm){
+		clockInMinute = cm;}
+	void setOfficerBadgeNumber(int ob){
+		officerBadgeNumber = ob;}
+	void setOfficerName(char* l){
+		for(int i=0;i<=7;i++)
+		{officerName[i] = l[i];}
+	}
+
+
 };
 
 #endif

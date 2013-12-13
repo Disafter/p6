@@ -21,30 +21,37 @@ int exitMinute;
 int exitMetricTime;
 int timeUsed;
 int fine;
-char tempString[
+char tempString[20];
+int tempInt;
 
-void enterCar();
+//void enterCar();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 
-	ifstream inputFile("Parking.txt");
-	ofstream outputFile("Parking.dat");
+	ifstream inputFile("Parking.dat");
+	ofstream outputFile("tickets.txt");
 
 	while(!inputFile.eof()){
 		inputFile>>operation;
 		if(operation[0]=='e' && operation[1]=='n'){
 			inputFile>>spotTemp;
 			Meters[spotTemp].spotNumber = spotTemp;
-			//inputFile<<Meters[spotTemp].car.getHours();
+			inputFile>>tempInt;
+			Meters[spotTemp].car.setHours(tempInt);
 			inputFile.ignore(1,':');
-			inputFile>>Meters[spotTemp].car.getMinutes();
-			Meters[spotTemp].car.getMetricTime = (Meters[spotTemp].car.getHours() * 60) + Meters[spotTemp].car.getMinutes();
-			inputFile>>Meters[spotTemp].car.getMake();
-			inputFile>>Meters[spotTemp].car.getModel();
-			inputFile>>Meters[spotTemp].car.getColor();
-			inputFile>>Meters[spotTemp].car.getLicenseNumber();
-			inputFile>>Meters[spotTemp].getPaidTime();
+			inputFile>>tempInt;
+			Meters[spotTemp].car.setMinutes(tempInt);
+			inputFile>>tempString;
+			Meters[spotTemp].car.setMake(tempString);
+			inputFile>>tempString;
+			Meters[spotTemp].car.setModel(tempString);
+			inputFile>>tempString;
+			Meters[spotTemp].car.setColor(tempString);
+			inputFile>>tempString;
+			Meters[spotTemp].car.setLicenseNumber(tempString);
+			inputFile>>tempInt;
+			Meters[spotTemp].setPaidTime(tempInt);
 		}
 		else if(operation[0]=='e' && operation[1]=='x'){
 			inputFile>>spotTemp;
@@ -58,9 +65,9 @@ int _tmain(int argc, _TCHAR* argv[])
 			timeUsed = exitMetricTime -  Meters[spotTemp].car.getMetricTime();
 			if(timeUsed > Meters[spotTemp].getPaidTime()){
 				outputFile<<"Make: "<<Meters[spotTemp].car.getMake()<<endl;
-				outputFile<<"Model: "<<Meters[spotTemp].car.getModel<<endl;
-				outputFile<<"Color: "<<Meters[spotTemp].car.getColor<<endl;
-				outputFile<<"License Number: "<<Meters[spotTemp].car.getLicenseNumber<<endl;
+				outputFile<<"Model: "<<Meters[spotTemp].car.getModel()<<endl;
+				outputFile<<"Color: "<<Meters[spotTemp].car.getColor()<<endl;
+				outputFile<<"License Number: "<<Meters[spotTemp].car.getLicenseNumber()<<endl;
 				outputFile<<"Fine: ";
 
 				fine = (timeUsed - Meters[spotTemp].paidTime) / 60;
@@ -72,11 +79,15 @@ int _tmain(int argc, _TCHAR* argv[])
 			}
 		}
 		else if(operation[0] == 'i'){
-			inputFile>>officerOnDuty.getOfficerName();
-			inputFile>>officerOnDuty.getOfficerBadgeNumber();
-			inputFile>>officerOnDuty.getClockInHour();
+			inputFile>>tempString;
+			officerOnDuty.setOfficerName(tempString);
+			inputFile>>tempInt;
+			officerOnDuty.setOfficerBadgeNumber(tempInt);
+			inputFile>>tempInt;
+			officerOnDuty.setClockInHour(tempInt);
 			inputFile.ignore(1,':');
-			inputFile>>officerOnDuty.getClockInMinute;
+			inputFile>>tempInt;
+			officerOnDuty.setClockInMinute(tempInt);
 		}
 	}
 
@@ -88,22 +99,23 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 
-	//system("pause");
 	return 0;
 }
 
-void enterCar(){
-	ifstream inputFile("Parking.txt");
-	inputFile>>spotTemp;
-	Meters[spotTemp].spotNumber = spotTemp;
-	inputFile>>Meters[spotTemp].car.hours;
-	inputFile.ignore(1,':');
-	inputFile>>Meters[spotTemp].car.minutes;
-	Meters[spotTemp].car.metricTime = (Meters[spotTemp].car.hours * 60) + Meters[spotTemp].car.minutes;
-	inputFile>>Meters[spotTemp].car.make;
-	inputFile>>Meters[spotTemp].car.model;
-	inputFile>>Meters[spotTemp].car.licenseNumber;
-	inputFile>>Meters[spotTemp].paidTime;
-	inputFile.close();
+/*
 
-}
+void enterCar(){
+ifstream inputFile("Parking.txt");
+inputFile>>spotTemp;
+Meters[spotTemp].spotNumber = spotTemp;
+inputFile>>Meters[spotTemp].car.hours;
+inputFile.ignore(1,':');
+inputFile>>Meters[spotTemp].car.minutes;
+Meters[spotTemp].car.metricTime = (Meters[spotTemp].car.hours * 60) + Meters[spotTemp].car.minutes;
+inputFile>>Meters[spotTemp].car.make;
+inputFile>>Meters[spotTemp].car.model;
+inputFile>>Meters[spotTemp].car.licenseNumber;
+inputFile>>Meters[spotTemp].paidTime;
+inputFile.close();
+
+}*/
